@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第一版坐席台 · 非保真</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #f4f4f4;
+      color: #222;
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+    }
+    h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+    .note { color: #666; margin: 0 0 16px; }
+    .desk { display: grid; grid-template-columns: 240px 1fr; gap: 12px; max-width: 960px; }
+    .pane { background: #fff; border: 1px solid #bbb; min-height: 520px; display: flex; flex-direction: column; }
+    .pane-title { padding: 8px 12px; border-bottom: 1px solid #ccc; background: #eee; font-weight: 600; }
+    .hint { padding: 8px 12px; color: #777; font-size: 13px; }
+    .item { padding: 10px 12px; border-bottom: 1px solid #e4e4e4; border-left: 2px solid transparent; }
+    .item.active { background: #f3f3f3; border-left-color: #222; }
+    .item .row, .head .row, .send { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .name { font-weight: 600; }
+    .meta { color: #777; font-size: 13px; }
+    .head { padding: 8px 12px; border-bottom: 1px solid #e4e4e4; }
+    .tag { border: 1px solid #222; border-radius: 99px; padding: 0 8px; font-size: 12px; }
+    .thread { padding: 12px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .who { color: #777; font-size: 12px; margin-bottom: 4px; }
+    .bubble { border: 1px solid #ccc; background: #f7f7f7; padding: 8px 10px; }
+    .bubble.muted { background: #fafafa; color: #444; }
+    .sub { color: #555; margin-top: 6px; }
+    .composer { border-top: 1px solid #ccc; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .label { color: #777; font-size: 12px; }
+    .input { border: 1px solid #bbb; padding: 8px 10px; min-height: 36px; }
+    .preview { color: #555; }
+    button { border: 1px solid #222; background: #222; color: #fff; padding: 4px 12px; font: inherit; }
+  </style>
+</head>
+<body>
+  <h1>第一版坐席台</h1>
+  <p class="note">非保真。同一屏只表达三条需求：翻译、常见问题自动回复、多入口进一个列表。</p>
+  <div class="desk">
+    <section class="pane">
+      <div class="pane-title">会话 · 需求 3</div>
+      <div class="hint">独立链接、独立站、其他平台进同一列表</div>
+      <div class="item active">
+        <div class="row"><span class="name">Maria</span><span class="meta">待回复</span></div>
+        <div class="meta">独立站 · 西班牙语</div>
+      </div>
+      <div class="item">
+        <div class="row"><span class="name">Ken</span><span class="meta">机器人处理中</span></div>
+        <div class="meta">独立链接 · 英语</div>
+      </div>
+      <div class="item">
+        <div class="row"><span class="name">Aisha</span><span class="meta">待回复</span></div>
+        <div class="meta">平台 · 阿拉伯语</div>
+      </div>
+    </section>
+    <section class="pane">
+      <div class="pane-title">当前会话 · 需求 1 和 2</div>
+      <div class="head">
+        <div class="row">
+          <span class="name">Maria</span>
+          <span class="tag">西班牙语</span>
+          <span class="meta" style="margin-right:auto">来自独立站</span>
+        </div>
+      </div>
+      <div class="thread">
+        <div>
+          <div class="who">买家原文</div>
+          <div class="bubble">
+            ¿Cuánto cuesta el envío a Madrid? ¿Tienen talla L?
+            <div class="sub">中文：运到马德里运费多少？有 L 码吗？</div>
+          </div>
+        </div>
+        <div>
+          <div class="who">机器人 · 已用客户语言发送</div>
+          <div class="bubble muted">
+            运费 8 美元，约 7–12 天。L 码有货。
+            <div class="sub">常见问题，坐席不用接手</div>
+          </div>
+        </div>
+        <div>
+          <div class="who">买家原文 · 转人工</div>
+          <div class="bubble">
+            ¿Puedo cambiar la dirección de envío?
+            <div class="sub">中文：可以改收货地址吗？</div>
+          </div>
+        </div>
+      </div>
+      <div class="composer">
+        <div class="label">坐席输入中文</div>
+        <div class="input">可以，把新地址发我。</div>
+        <div class="preview">将发送：Claro, envíame la nueva dirección.</div>
+        <div class="send"><span></span><button type="button">确认发送</button></div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
